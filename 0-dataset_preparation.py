@@ -18,6 +18,7 @@ train_texts, test_texts, train_labels, test_labels = train_test_split(
     data['tweet'], data['class'], test_size=0.2, random_state=42
 )
 
+
 # Tokenize the data
 tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 train_encodings = tokenizer(list(train_texts), truncation=True, padding=True, max_length=128)

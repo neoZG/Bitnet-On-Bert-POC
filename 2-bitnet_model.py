@@ -23,6 +23,7 @@ class HateSpeechDataset(Dataset):
         item['labels'] = torch.tensor(self.labels[idx])
         return item
 
+
 # Create Datasets and DataLoader for BitNet training
 train_dataset = HateSpeechDataset(train_encodings, list(train_labels))
 test_dataset = HateSpeechDataset(test_encodings, list(test_labels))
@@ -113,43 +114,3 @@ def evaluate_model(model, test_loader, device):
 accuracy = evaluate_model(model, test_loader, device)
 print(f"\nFinal BitNet Model Accuracy: {accuracy:.4f}")
 
-
-
-
-
-
-# # bitnet_model.py
-# from transformers import AutoModelForSequenceClassification
-# from bitnet import replace_linears_in_hf  # Ensure BitNet is available
-
-# # Load baseline model
-# model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased", num_labels=2)
-# model.load_state_dict(torch.load("baseline_model.pt"))
-
-# # Apply BitNet
-# replace_linears_in_hf(model)
-
-# # Fine-tune BitNet model
-# train_loader = torch.load("train_data.pt")
-# optimizer = AdamW(model.parameters(), lr=5e-5)
-# device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-# model.to(device)
-
-# # Training loop
-# epochs = 2
-# for epoch in range(epochs):
-#     model.train()
-#     total_loss = 0
-#     for batch in train_loader:
-#         inputs = {key: val.to(device) for key, val in batch.items() if key != 'labels'}
-#         labels = batch['labels'].to(device)
-#         outputs = model(**inputs, labels=labels)
-#         loss = outputs.loss
-#         loss.backward()
-#         optimizer.step()
-#         optimizer.zero_grad()
-#         total_loss += loss.item()
-#     print(f"Epoch {epoch + 1} (BitNet), Loss: {total_loss / len(train_loader)}")
-
-# # Save the quantized model
-# torch.save(model.state_dict(), "bitnet_model.pt")

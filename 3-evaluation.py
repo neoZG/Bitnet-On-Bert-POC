@@ -8,6 +8,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import codecarbon
 from torch.utils.data import DataLoader, Dataset
 
+
 # Ensure that the test_loader is correctly set up and loaded
 # Define Dataset class
 class HateSpeechDataset(Dataset):
@@ -179,43 +180,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-# from sklearn.metrics import accuracy_score, classification_report
-# import torch
-
-# def evaluate_model(model, test_loader):
-#     model.eval()
-#     predictions, true_labels = [], []
-#     with torch.no_grad():
-#         for batch in test_loader:
-#             inputs = {key: val.to(device) for key, val in batch.items() if key != 'labels'}
-#             labels = batch['labels'].to(device)
-#             outputs = model(**inputs)
-#             logits = outputs.logits
-#             preds = torch.argmax(logits, dim=-1).cpu().numpy()
-#             predictions.extend(preds)
-#             true_labels.extend(labels.cpu().numpy())
-#     return accuracy_score(true_labels, predictions), classification_report(true_labels, predictions)
-
-# # Load test data
-# test_loader = torch.load("test_data.pt")
-
-# # Evaluate baseline model
-# model.load_state_dict(torch.load("baseline_model.pt"))
-# baseline_acc, baseline_report = evaluate_model(model, test_loader)
-# print(f"Baseline Accuracy: {baseline_acc}")
-# print(baseline_report)
-
-# # Evaluate BitNet model
-# model.load_state_dict(torch.load("bitnet_model.pt"))
-# bitnet_acc, bitnet_report = evaluate_model(model, test_loader)
-# print(f"BitNet Accuracy: {bitnet_acc}")
-# print(bitnet_report)
