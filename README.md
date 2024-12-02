@@ -2,9 +2,13 @@
 
 This repository contains the code and results for a proof-of-concept experiment comparing DistilBERT and BitNet models for hate speech detection. The study evaluates model performance, memory usage, inference time, and energy consumption to determine the feasibility of using quantized models like BitNet in real-world scenarios.
 
+The necessary model files (`.pt`) and datasets are available for download, so you can skip the training steps and go straight to the evaluation. You can find them in the following Google Drive folder:
+[Download Model and Data Files](https://drive.google.com/drive/folders/1e_dK382XmkfVvE5LZIHr-_RV2g0mz8pQ?usp=sharing)
+
 ---
 
 ## **Project Structure**
+
 | File                       | Description                                |
 |----------------------------|--------------------------------------------|
 | `0-dataset_preparation.py` | Prepares and tokenizes the dataset.        |
